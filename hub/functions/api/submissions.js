@@ -111,15 +111,6 @@ export async function onRequestPost({ request, env }) {
   });
 }
 
-// ============== Méthodes non autorisées ==============
-export function onRequest({ request }) {
-  if (request.method === 'POST') return; // handled by onRequestPost
-  return new Response('Method Not Allowed', {
-    status: 405,
-    headers: { Allow: 'POST' },
-  });
-}
-
 // ============== Helpers ==============
 
 function json(status, payload) {
