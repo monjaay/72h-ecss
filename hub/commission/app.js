@@ -119,7 +119,7 @@
 
   function getName(sub) {
     const fields = sub.fields || {};
-    const full = pickField(fields, 'nom complet', 'full name');
+    const full = pickField(fields, 'prénom et nom', 'prenom et nom', 'nom complet', 'full name');
     if (full) return full;
     const first = pickField(fields, 'prénom', 'prenom', 'first');
     const last = pickField(fields, 'nom', 'last');
