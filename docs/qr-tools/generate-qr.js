@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 // =========== CONFIG ===========
-const DEFAULT_URL = 'https://72h-ecss-unite8.pages.dev/';
+const DEFAULT_URL = 'https://72h-ecss.pages.dev/';
 const url = process.argv[2] || DEFAULT_URL;
 
 const MARINE = '#0A2342';

@@ -32,7 +32,7 @@ Hub digital pour les **72H ECSS** organisées par le **CCQ Unité 8 — Parcelle
 ## Liens en production
 
 - **Formulaire Tally** : <https://tally.so/r/xXoX7r>
-- **Hub** : `https://72h-ecss-unite8.pages.dev/` *(URL définitive après déploiement Cloudflare)*
+- **Hub** : `https://72h-ecss.pages.dev/` *(URL définitive après déploiement Cloudflare)*
 - **Espace commission** : `/commission/` (lien discret dans le footer du hub, protégé par passcode)
 
 ## Déploiement
@@ -56,5 +56,5 @@ Ouvrir `print/fiche-inscription.html` ou `print/guide-commission.html` dans Chro
 - `{{WHATSAPP_CCQ}}` → numéro WhatsApp principal CCQ Unité 8 (format `221XXXXXXXXX`)
   - 2 occurrences dans `hub/index.html`
   - 1 occurrence dans `print/guide-commission.html`
-- URL hub si différente de `72h-ecss-unite8.pages.dev` → relancer `node docs/qr-tools/generate-qr.js <nouvelle-url>`
+- URL hub si différente de `72h-ecss.pages.dev` → relancer `node docs/qr-tools/generate-qr.js <nouvelle-url>`
 
