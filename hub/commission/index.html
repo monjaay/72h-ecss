@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A2342">
+  <title>Espace commission — 72H ECSS · CCQ Unité 8</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A2342'/%3E%3Cpath d='M32 14a9 9 0 1 0 0 18 9 9 0 1 1 0 18 9 9 0 1 1 0-18 9 9 0 1 0 0-18z' fill='none' stroke='%23E8A020' stroke-width='3.5'/%3E%3C/svg%3E">
+  <style>
+    /* ======= Page commission — additions au style.css ======= */
+    body { background: linear-gradient(180deg, #0A2342 0%, #143358 100%); min-height: 100vh; color: #fff; }
+
+    .commission-shell { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; position: relative; z-index: 1; }
+
+    .com-header {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding-bottom: 24px; margin-bottom: 32px;
+      border-bottom: 1px solid rgba(232, 160, 32, 0.25);
+    }
+    .com-header__brand { display: flex; align-items: center; gap: 12px; }
+    .com-header__eight { width: 28px; height: 48px; color: #E8A020; }
+    .com-header__title { font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #F4C36A; line-height: 1.3; }
+    .com-header__sub { font-size: 11px; color: rgba(255,255,255,0.6); }
+    .com-header__back { font-size: 13px; color: rgba(255,255,255,0.7); padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.15); transition: background 0.2s; }
+    .com-header__back:hover { background: rgba(255,255,255,0.1); text-decoration: none; color: #fff; }
+
+    /* ======= Écran passcode ======= */
+    .lock-screen {
+      max-width: 440px; margin: 60px auto; padding: 40px 32px;
+      background: rgba(255,255,255,0.06); backdrop-filter: blur(20px);
+      border: 1px solid rgba(232, 160, 32, 0.2); border-radius: 24px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .lock-screen::before {
+      content: ""; position: absolute; top: -50px; right: -60px;
+      width: 200px; height: 350px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 100'><path d='M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z' fill='none' stroke='%23E8A020' stroke-width='3'/></svg>");
+      background-repeat: no-repeat; background-size: contain; opacity: 0.1;
+    }
+    .lock-screen__eight { width: 56px; height: 96px; color: #E8A020; margin: 0 auto 16px; position: relative; z-index: 1; }
+    .lock-screen h1 { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 8px; position: relative; z-index: 1; }
+    .lock-screen__lead { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 28px; position: relative; z-index: 1; }
+    .lock-form { display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 1; }
+    .lock-form input {
+      padding: 14px 18px; font-size: 16px; font-family: inherit;
+      background: rgba(0,0,0,0.25); color: #fff; border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 12px; outline: none; text-align: center; letter-spacing: 0.1em;
+      transition: border-color 0.2s;
+    }
+    .lock-form input:focus { border-color: #E8A020; }
+    .lock-form button {
+      padding: 14px 24px; font-size: 16px; font-weight: 800; font-family: inherit;
+      background: #E8A020; color: #0A2342; border: none; border-radius: 12px;
+      cursor: pointer; transition: transform 0.15s, background 0.2s;
+    }
+    .lock-form button:hover { background: #F4C36A; transform: translateY(-1px); }
+    .lock-form button:disabled { opacity: 0.6; cursor: wait; transform: none; }
+    .lock-error { font-size: 13px; color: #ff8a8a; margin-top: 4px; min-height: 18px; position: relative; z-index: 1; }
+    .lock-screen__note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 24px; line-height: 1.5; position: relative; z-index: 1; }
+
+    /* ======= Dashboard ======= */
+    .dashboard { display: none; }
+    .dashboard.is-active { display: block; }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(232,160,32,0.2);
+      border-radius: 16px; padding: 20px; position: relative; overflow: hidden;
+    }
+    .stat-card__icon { font-size: 24px; color: #E8A020; margin-bottom: 8px; font-weight: 900; }
+    .stat-card__value { font-size: 36px; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 4px; }
+    .stat-card__label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+      margin-bottom: 16px; padding: 14px 16px;
+      background: rgba(255,255,255,0.04); border-radius: 12px;
+    }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 8px 14px; font-size: 13px; font-weight: 600; font-family: inherit;
+      background: transparent; color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 999px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { color: #fff; border-color: rgba(232,160,32,0.5); }
+    .filter-btn.is-active { background: #E8A020; color: #0A2342; border-color: #E8A020; }
+    .toolbar__right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+    .csv-btn {
+      padding: 9px 16px; font-size: 13px; font-weight: 700; font-family: inherit;
+      background: rgba(13,122,112,0.9); color: #fff; border: none; border-radius: 999px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .csv-btn:hover { background: #0D7A70; }
+    .refresh-btn {
+      padding: 9px 14px; font-size: 13px; font-family: inherit;
+      background: transparent; color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 999px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .refresh-btn:hover { background: rgba(255,255,255,0.08); }
+
+    .table-wrap {
+      background: rgba(255,255,255,0.04); border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { padding: 14px 16px; text-align: left; font-size: 14px; }
+    th {
+      background: rgba(0,0,0,0.3); color: #E8A020;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      border-bottom: 1px solid rgba(232,160,32,0.2); white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.15s; }
+    tbody tr:hover { background: rgba(232,160,32,0.05); }
+    tbody tr:last-child { border-bottom: none; }
+    td { color: rgba(255,255,255,0.9); vertical-align: top; }
+    td.col-name { font-weight: 700; color: #fff; }
+    td.col-wa a { color: #25D366; text-decoration: none; }
+    td.col-wa a:hover { text-decoration: underline; }
+    .activity-pill {
+      display: inline-block; padding: 3px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .activity-pill--rando { background: rgba(13,122,112,0.25); color: #66c9bf; }
+    .activity-pill--sang { background: rgba(232,160,32,0.2); color: #F4C36A; }
+    .activity-pill--both { background: rgba(255,255,255,0.12); color: #fff; }
+
+    .empty-state { padding: 60px 20px; text-align: center; color: rgba(255,255,255,0.55); }
+    .empty-state__icon { font-size: 48px; color: rgba(232,160,32,0.4); margin-bottom: 12px; font-weight: 900; }
+
+    .com-footer {
+      margin-top: 48px; padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px; color: rgba(255,255,255,0.4); text-align: center;
+    }
+    .com-footer strong { color: #E8A020; }
+
+    @media (max-width: 640px) {
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .toolbar__right { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <svg class="bg-eight" viewBox="0 0 100 200" aria-hidden="true">
+    <path d="M50 10a35 35 0 1 0 0 70 35 35 0 1 1 0 70 35 35 0 1 1 0-70 35 35 0 1 0 0-70z"
+          fill="none" stroke="currentColor" stroke-width="6"/>
+  </svg>
+
+  <div class="commission-shell">
+
+    <header class="com-header">
+      <div class="com-header__brand">
+        <svg class="com-header__eight" viewBox="0 0 60 100" aria-hidden="true">
+          <path d="M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z"
+                fill="none" stroke="currentColor" stroke-width="5"/>
+        </svg>
+        <div>
+          <div class="com-header__title">Espace commission</div>
+          <div class="com-header__sub">72H ECSS · CCQ Unité 8</div>
+        </div>
+      </div>
+      <a href="../" class="com-header__back">← Hub public</a>
+    </header>
+
+    <!-- ============== ÉCRAN PASSCODE ============== -->
+    <section class="lock-screen" id="lockScreen" aria-label="Saisie du passcode">
+      <svg class="lock-screen__eight" viewBox="0 0 60 100" aria-hidden="true">
+        <path d="M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z"
+              fill="none" stroke="currentColor" stroke-width="5"/>
+      </svg>
+      <h1>Accès réservé</h1>
+      <p class="lock-screen__lead">Saisissez le passcode commission pour consulter les inscriptions.</p>
+      <form class="lock-form" id="lockForm" autocomplete="off">
+        <input type="password" id="passcodeInput" placeholder="••••••••••••" aria-label="Passcode" required minlength="4" autofocus>
+        <button type="submit" id="unlockBtn">Déverrouiller</button>
+        <div class="lock-error" id="lockError" role="alert" aria-live="polite"></div>
+      </form>
+      <p class="lock-screen__note">
+        Passcode oublié ? Contacter Mamadou — logistique digitale.<br>
+        Les données affichées sont confidentielles.
+      </p>
+    </section>
+
+    <!-- ============== DASHBOARD ============== -->
+    <section class="dashboard" id="dashboard" aria-hidden="true">
+
+      <div class="stats" id="stats">
+        <div class="stat-card">
+          <div class="stat-card__icon">∞</div>
+          <div class="stat-card__value" id="statTotal">—</div>
+          <div class="stat-card__label">Inscrits total</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon">🚶</div>
+          <div class="stat-card__value" id="statRando">—</div>
+          <div class="stat-card__label">Randonnée</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon">🩸</div>
+          <div class="stat-card__value" id="statSang">—</div>
+          <div class="stat-card__label">Don de sang</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__icon">∞</div>
+          <div class="stat-card__value" id="statBoth">—</div>
+          <div class="stat-card__label">Les deux</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="filter-group" role="tablist" aria-label="Filtre par activité">
+          <button class="filter-btn is-active" data-filter="all" role="tab">Tous</button>
+          <button class="filter-btn" data-filter="rando" role="tab">🚶 Randonnée</button>
+          <button class="filter-btn" data-filter="sang" role="tab">🩸 Don de sang</button>
+          <button class="filter-btn" data-filter="both" role="tab">∞ Les deux</button>
+        </div>
+        <div class="toolbar__right">
+          <button class="refresh-btn" id="refreshBtn" title="Rafraîchir">↻ Rafraîchir</button>
+          <button class="csv-btn" id="csvBtn">⬇ Export CSV</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Nom complet</th>
+                <th>WhatsApp</th>
+                <th>Activité</th>
+                <th>Secteur</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="emptyState" style="display:none;">
+          <div class="empty-state__icon">∞</div>
+          <p>Aucune inscription pour ce filtre.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="com-footer">
+      <strong>Espace commission</strong> · accès confidentiel · sessions non persistantes
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

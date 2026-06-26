@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Guide commission logistique — 72H ECSS · CCQ Unité 8</title>
+  <style>
+    /* =============================================================
+       Guide commission logistique — A4 (210 × 297 mm) — 1 page
+       Impression : Ctrl+P → A4 portrait → marges minimales
+       ============================================================= */
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    :root {
+      --marine: #0A2342;
+      --teal: #0D7A70;
+      --gold: #E8A020;
+      --bg: #F4F8F7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--marine);
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      padding: 14mm 16mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Watermark 8 */
+    .watermark {
+      position: absolute;
+      top: 50%;
+      right: -50mm;
+      transform: translateY(-50%) rotate(-10deg);
+      width: 150mm;
+      height: 260mm;
+      color: var(--gold);
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6mm;
+      border-bottom: 2pt solid var(--gold);
+      margin-bottom: 8mm;
+    }
+
+    .header__brand {
+      display: flex;
+      align-items: center;
+      gap: 4mm;
+    }
+
+    .header__eight {
+      width: 14mm;
+      height: 24mm;
+      color: var(--gold);
+    }
+
+    .header__text .tag {
+      display: block;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .header__text .name {
+      display: block;
+      font-size: 13pt;
+      font-weight: 800;
+      color: var(--marine);
+      margin: 1mm 0;
+    }
+
+    .header__text .sub {
+      font-size: 9pt;
+      color: #5a6770;
+    }
+
+    .header__dates {
+      text-align: right;
+    }
+
+    .header__dates .big {
+      display: block;
+      font-size: 18pt;
+      font-weight: 900;
+      color: var(--marine);
+      letter-spacing: -0.02em;
+    }
+
+    .header__dates .sub {
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Titre */
+    .title-block {
+      margin-bottom: 7mm;
+    }
+
+    .title-block h1 {
+      font-size: 24pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--marine);
+      margin-bottom: 2mm;
+      line-height: 1.1;
+    }
+
+    .title-block .subtitle {
+      font-size: 11pt;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6mm;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      background: var(--bg);
+      border-left: 3pt solid var(--gold);
+      border-radius: 0 4mm 4mm 0;
+      padding: 5mm 5mm 5mm 7mm;
+      position: relative;
+    }
+
+    .step__num {
+      position: absolute;
+      top: -4mm;
+      left: -10mm;
+      width: 14mm;
+      height: 14mm;
+      background: var(--marine);
+      color: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14pt;
+      font-weight: 900;
+      box-shadow: 0 2pt 6pt rgba(10, 35, 66, 0.2);
+    }
+
+    .step__title {
+      font-size: 11pt;
+      font-weight: 800;
+      color: var(--marine);
+      margin-bottom: 2mm;
+      padding-left: 6mm;
+    }
+
+    .step__body {
+      font-size: 9pt;
+      line-height: 1.5;
+      color: var(--marine);
+    }
+
+    .step__body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .step__body li {
+      padding-left: 5mm;
+      position: relative;
+      margin-bottom: 1.5mm;
+    }
+
+    .step__body li::before {
+      content: "∞";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .step__body code {
+      background: var(--marine);
+      color: var(--gold);
+      padding: 0.5mm 1.5mm;
+      border-radius: 1mm;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 8.5pt;
+    }
+
+    .step__body strong { color: var(--marine); }
+
+    /* Encadré contact */
+    .contact-box {
+      margin-top: 8mm;
+      padding: 5mm 6mm;
+      background: linear-gradient(135deg, var(--marine) 0%, #143358 100%);
+      color: white;
+      border-radius: 4mm;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 5mm;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      top: -10mm;
+      right: -10mm;
+      width: 50mm;
+      height: 80mm;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 100'><path d='M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z' fill='none' stroke='%23E8A020' stroke-width='3'/></svg>");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.15;
+    }
+
+    .contact-box__icon {
+      width: 14mm;
+      height: 14mm;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--marine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16pt;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-box__body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-box__body .label {
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .contact-box__body .name {
+      font-size: 13pt;
+      font-weight: 800;
+      color: white;
+      margin: 1mm 0;
+    }
+
+    .contact-box__body .role {
+      font-size: 9pt;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-box__phone {
+      text-align: right;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-box__phone .label {
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .contact-box__phone .number {
+      display: block;
+      font-size: 12pt;
+      font-weight: 800;
+      color: white;
+      margin-top: 1mm;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 16mm;
+      right: 16mm;
+      padding-top: 4mm;
+      border-top: 1pt dashed var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8pt;
+      color: #5a6770;
+    }
+
+    .footer__brand {
+      font-weight: 700;
+      color: var(--marine);
+    }
+
+    .footer__brand .gold {
+      color: var(--gold);
+    }
+
+    /* Aide impression */
+    @media screen {
+      body {
+        margin: 20px auto;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        outline: 1px solid #ddd;
+      }
+      .print-help {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: var(--marine);
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: inherit;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        z-index: 100;
+      }
+      .print-help b { color: var(--gold); }
+    }
+    @media print {
+      .print-help { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-help">
+    Imprimer : <b>Ctrl+P</b> → format <b>A4</b> portrait → marges <b>Aucune</b>
+  </div>
+
+  <svg class="watermark" viewBox="0 0 60 100" aria-hidden="true">
+    <path d="M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z"
+          fill="none" stroke="currentColor" stroke-width="3"/>
+  </svg>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__brand">
+      <svg class="header__eight" viewBox="0 0 60 100" aria-hidden="true">
+        <path d="M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z"
+              fill="none" stroke="currentColor" stroke-width="5"/>
+      </svg>
+      <div class="header__text">
+        <span class="tag">CCQ · Unité 8</span>
+        <span class="name">72H ECSS — Logistique digitale</span>
+        <span class="sub">Parcelles Assainies · Dakar</span>
+      </div>
+    </div>
+    <div class="header__dates">
+      <span class="big">7 · 8 · 9 Août</span>
+      <span class="sub">2026</span>
+    </div>
+  </header>
+
+  <!-- Titre -->
+  <div class="title-block">
+    <h1>Guide de la commission</h1>
+    <div class="subtitle">Tout ce qu'il faut savoir pour gérer les inscriptions et la communication numérique des 72H</div>
+  </div>
+
+  <!-- 4 étapes -->
+  <div class="steps">
+
+    <article class="step">
+      <div class="step__num">1</div>
+      <div class="step__title">Consulter les inscriptions</div>
+      <div class="step__body">
+        <ul>
+          <li>Aller sur <strong>tally.so</strong> et se connecter avec le compte CCQ.</li>
+          <li>Ouvrir le formulaire <strong>« 72H ECSS · Unité 8 »</strong>.</li>
+          <li>Onglet <strong>Submissions</strong> : liste des inscrits en temps réel.</li>
+          <li>Bouton <strong>Export</strong> → fichier CSV ouvrable dans Excel.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step__num">2</div>
+      <div class="step__title">Partager le lien sur WhatsApp</div>
+      <div class="step__body">
+        <ul>
+          <li>Copier le lien : <code>tally.so/r/xXoX7r</code></li>
+          <li>Coller dans les groupes WhatsApp Unité 8.</li>
+          <li>Ajouter un message court : <em>« Inscris-toi aux 72H ECSS — 2 min, sans compte. »</em></li>
+          <li>Utiliser les <strong>3 templates WhatsApp</strong> déjà préparés.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step__num">3</div>
+      <div class="step__title">Imprimer & afficher le QR code</div>
+      <div class="step__body">
+        <ul>
+          <li>Fichier : <code>hub/assets/qr-code.svg</code></li>
+          <li>Ouvrir dans Chrome → <strong>Ctrl+P</strong> → format <strong>A3</strong> pour affiche.</li>
+          <li>Afficher devant la mosquée, l'école, les commerces clés.</li>
+          <li>Scanner avec le téléphone pour vérifier que ça pointe vers le bon site.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="step">
+      <div class="step__num">4</div>
+      <div class="step__title">Fiches papier pour les non-connectés</div>
+      <div class="step__body">
+        <ul>
+          <li>Imprimer <code>fiche-inscription.html</code> en <strong>A5</strong>.</li>
+          <li>Collecter sur le terrain pendant les visites quartier.</li>
+          <li>Saisir manuellement dans Tally <strong>chaque soir</strong>.</li>
+          <li>Conserver les originaux papier pour archives CCQ.</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Contact technique -->
+  <div class="contact-box">
+    <div class="contact-box__icon">∞</div>
+    <div class="contact-box__body">
+      <span class="label">Contact technique</span>
+      <span class="name">Mamadou Ndiaye</span>
+      <span class="role">Logistique digitale 72H — disponible en cas de problème</span>
+    </div>
+    <div class="contact-box__phone">
+      <span class="label">WhatsApp</span>
+      <span class="number">+{{WHATSAPP_CCQ}}</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <span class="gold">∞</span> CCQ Unité 8 · Parcelles Assainies · Dakar
+    </div>
+    <div><em>Yallah na ñu dem ak jàmm</em></div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fiche d'inscription — 72H ECSS · CCQ Unité 8</title>
+  <style>
+    /* =============================================================
+       Fiche d'inscription A5 (148 × 210 mm) — Recto
+       Impression : Ctrl+P → A5 portrait → marges minimales
+       ============================================================= */
+
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+
+    :root {
+      --marine: #0A2342;
+      --teal: #0D7A70;
+      --gold: #E8A020;
+      --bg: #F4F8F7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 148mm;
+      height: 210mm;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--marine);
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      padding: 8mm 10mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ============== Watermark 8 global ============== */
+    .watermark {
+      position: absolute;
+      top: 50%;
+      right: -30mm;
+      transform: translateY(-50%);
+      width: 100mm;
+      height: 180mm;
+      color: var(--gold);
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    /* ============== Header ============== */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 6mm;
+      padding-bottom: 5mm;
+      border-bottom: 1.5pt solid var(--gold);
+      margin-bottom: 5mm;
+      position: relative;
+    }
+
+    .header__brand {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+
+    .header__eight {
+      width: 12mm;
+      height: 20mm;
+      color: var(--gold);
+    }
+
+    .header__text {
+      font-size: 10pt;
+      line-height: 1.3;
+    }
+
+    .header__text .tag {
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: block;
+    }
+
+    .header__text .name {
+      font-size: 11pt;
+      font-weight: 800;
+      color: var(--marine);
+    }
+
+    .header__text .sub {
+      font-size: 8pt;
+      color: #5a6770;
+    }
+
+    .header__dates {
+      text-align: right;
+      font-size: 8pt;
+      line-height: 1.3;
+    }
+
+    .header__dates .big {
+      font-size: 14pt;
+      font-weight: 900;
+      color: var(--marine);
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .header__dates .sub {
+      font-size: 7pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* ============== Titre ============== */
+    .title-block {
+      text-align: center;
+      margin-bottom: 5mm;
+      position: relative;
+    }
+
+    .title-block h1 {
+      font-size: 16pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--marine);
+      margin-bottom: 1mm;
+    }
+
+    .title-block .subtitle {
+      font-size: 9pt;
+      color: #5a6770;
+      font-weight: 500;
+    }
+
+    /* ============== Champs ============== */
+    .fields {
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+      position: relative;
+      z-index: 2;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+    }
+
+    .field__label {
+      font-size: 8pt;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .field__label .req {
+      color: var(--gold);
+      margin-left: 2px;
+    }
+
+    .field__input {
+      height: 10mm;
+      border: none;
+      border-bottom: 1.5pt solid var(--marine);
+      background: transparent;
+    }
+
+    .field--small .field__input { height: 8mm; }
+
+    .field__row {
+      display: flex;
+      gap: 4mm;
+    }
+
+    .field__row .field { flex: 1; }
+
+    /* ============== Choix d'activité ============== */
+    .choices {
+      margin-top: 1mm;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5mm;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      padding: 2.5mm 3mm;
+      border: 1pt solid var(--marine);
+      border-radius: 3mm;
+      background: var(--bg);
+    }
+
+    .checkbox {
+      width: 5mm;
+      height: 5mm;
+      border: 1.5pt solid var(--marine);
+      border-radius: 1mm;
+      flex-shrink: 0;
+      background: white;
+    }
+
+    .choice__main {
+      flex: 1;
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--marine);
+    }
+
+    .choice__icon {
+      font-size: 14pt;
+    }
+
+    /* ============== Footer signature ============== */
+    .footer {
+      position: absolute;
+      bottom: 8mm;
+      left: 10mm;
+      right: 10mm;
+      padding-top: 4mm;
+      border-top: 1pt dashed var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 4mm;
+    }
+
+    .signature {
+      flex: 1;
+    }
+
+    .signature__label {
+      font-size: 7pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 700;
+      margin-bottom: 2mm;
+    }
+
+    .signature__line {
+      border-bottom: 1pt solid var(--marine);
+      height: 8mm;
+    }
+
+    .footer__note {
+      flex: 1.2;
+      font-size: 7pt;
+      line-height: 1.4;
+      color: #5a6770;
+      text-align: right;
+    }
+
+    .footer__note strong {
+      color: var(--marine);
+      display: block;
+      font-size: 8pt;
+      margin-bottom: 1mm;
+    }
+
+    /* ============== Aide impression ============== */
+    @media screen {
+      body {
+        margin: 20px auto;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        outline: 1px solid #ddd;
+      }
+      .print-help {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: var(--marine);
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: inherit;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        z-index: 100;
+      }
+      .print-help b { color: var(--gold); }
+    }
+    @media print {
+      .print-help { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-help">
+    Imprimer : <b>Ctrl+P</b> → format <b>A5</b> portrait → marges <b>Aucune</b>
+  </div>
+
+  <!-- Watermark 8 -->
+  <svg class="watermark" viewBox="0 0 60 100" aria-hidden="true">
+    <path d="M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z"
+          fill="none" stroke="currentColor" stroke-width="3"/>
+  </svg>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__brand">
+      <svg class="header__eight" viewBox="0 0 60 100" aria-hidden="true">
+        <path d="M30 6a17 17 0 1 0 0 34 17 17 0 1 1 0 34 17 17 0 1 1 0-34 17 17 0 1 0 0-34z"
+              fill="none" stroke="currentColor" stroke-width="5"/>
+      </svg>
+      <div class="header__text">
+        <span class="tag">CCQ · Unité 8</span>
+        <span class="name">72H ECSS</span>
+        <span class="sub">Parcelles Assainies · Dakar</span>
+      </div>
+    </div>
+    <div class="header__dates">
+      <span class="big">7 · 8 · 9</span>
+      <span class="sub">Août 2026</span>
+    </div>
+  </header>
+
+  <!-- Titre -->
+  <div class="title-block">
+    <h1>Fiche d'inscription</h1>
+    <div class="subtitle">Engagement · Citoyenneté · Solidarité · Santé</div>
+  </div>
+
+  <!-- Champs -->
+  <div class="fields">
+
+    <div class="field__row">
+      <div class="field">
+        <label class="field__label">Prénom <span class="req">*</span></label>
+        <div class="field__input"></div>
+      </div>
+      <div class="field">
+        <label class="field__label">Nom <span class="req">*</span></label>
+        <div class="field__input"></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field__label">Numéro WhatsApp <span class="req">*</span></label>
+      <div class="field__input"></div>
+    </div>
+
+    <div class="field">
+      <label class="field__label">Secteur dans l'Unité 8</label>
+      <div class="field__input field--small"></div>
+    </div>
+
+    <div class="field">
+      <label class="field__label">Je souhaite participer à <span class="req">*</span></label>
+      <div class="choices">
+        <div class="choice">
+          <div class="checkbox"></div>
+          <span class="choice__icon">🚶</span>
+          <span class="choice__main">La Randonnée pédestre (Unité 8 → Cambérène)</span>
+        </div>
+        <div class="choice">
+          <div class="checkbox"></div>
+          <span class="choice__icon">🩸</span>
+          <span class="choice__main">Le Don de sang</span>
+        </div>
+        <div class="choice">
+          <div class="checkbox"></div>
+          <span class="choice__icon">∞</span>
+          <span class="choice__main">Les deux activités</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="signature">
+      <div class="signature__label">Signature / Date</div>
+      <div class="signature__line"></div>
+    </div>
+    <div class="footer__note">
+      <strong>À remettre à la commission logistique</strong>
+      Vos données ne seront utilisées que pour l'organisation des 72H ECSS.
+    </div>
+  </footer>
+
+</body>
+</html>
