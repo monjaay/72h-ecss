@@ -1,4 +1,4 @@
-# 72H ECSS · Unité 8 — Logistique Digitale
+# 72H ECSS · Unité 8 — Hub digital
 
 Hub digital pour les **72H ECSS** organisées par le **CCQ Unité 8 — Parcelles Assainies** les **7, 8 et 9 août 2026**.
 
