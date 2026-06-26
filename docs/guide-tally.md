@@ -10,7 +10,7 @@
 
 1. Aller sur **<https://tally.so>**
 2. Cliquer sur **Sign in** (en haut à droite)
-3. Se connecter avec le compte CCQ (email + mot de passe — voir Mamadou si oubli)
+3. Se connecter avec le compte CCQ (email + mot de passe — voir l'admin du compte si oubli)
 
 > Si plusieurs membres de la commission ont besoin d'accéder aux réponses, demander à l'admin du compte CCQ d'inviter chacun (`Settings → Workspace members`).
 
@@ -101,7 +101,7 @@ Si la commission veut ajouter un champ (ex : « Tranche d'âge »), c'est **uniq
 
 ---
 
-## 9. Problème ? Mamadou
+## 9. Problème ?
 
 | Problème | Solution |
 | --- | --- |
@@ -109,7 +109,7 @@ Si la commission veut ajouter un champ (ex : « Tranche d'âge »), c'est **uniq
 | Le lien ne s'ouvre pas chez un participant | Vérifier sa connexion, lui envoyer le QR code |
 | Inscription en double | Garder la plus récente, signaler en commentaire |
 | Export CSV vide | Vérifier les filtres actifs, désactiver tous les filtres |
-| Autre | Contacter Mamadou — WhatsApp `+{{WHATSAPP_CCQ}}` |
+| Autre | Contacter le WhatsApp commission `+{{WHATSAPP_CCQ}}` |
 
 ---
 

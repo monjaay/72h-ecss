@@ -18,7 +18,7 @@ export async function onRequestPost({ request, env }) {
   if (!env.PASSCODE || !env.TALLY_API_KEY || !env.TALLY_FORM_ID) {
     return json(500, {
       ok: false,
-      error: 'Configuration serveur incomplète. Contacter Mamadou.',
+      error: 'Configuration serveur incomplète. Contacter l\'admin du compte CCQ.',
     });
   }
 

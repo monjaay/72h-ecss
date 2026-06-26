@@ -58,6 +58,3 @@ Ouvrir `print/fiche-inscription.html` ou `print/guide-commission.html` dans Chro
   - 1 occurrence dans `print/guide-commission.html`
 - URL hub si différente de `72h-ecss-unite8.pages.dev` → relancer `node docs/qr-tools/generate-qr.js <nouvelle-url>`
 
-## Contact technique
-
-Mamadou Ndiaye — logistique digitale 72H ECSS.
